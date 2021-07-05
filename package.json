@@ -1,0 +1,56 @@
+{
+  "name": "cli-test",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "yarn run tsc",
+    "tsc": "tsc --project tsconfig.compile.json",
+    "tsc:w": "tsc --project tsconfig.json -w",
+    "start": "tsnd --inspect --ignore-watch node_modules --respawn --transpile-only -r tsconfig-paths/register src/index.ts",
+    "start:prod": "cross-env NODE_ENV=production node dist/index.js",
+    "typeorm": "tsed typeorm"
+  },
+  "dependencies": {
+    "@tsed/ajv": "^6.59.1",
+    "@tsed/cli-core": "3.3.2",
+    "@tsed/common": "^6.59.1",
+    "@tsed/core": "^6.59.1",
+    "@tsed/di": "^6.59.1",
+    "@tsed/exceptions": "^6.59.1",
+    "@tsed/json-mapper": "^6.59.1",
+    "@tsed/platform-express": "^6.59.1",
+    "@tsed/schema": "^6.59.1",
+    "@tsed/typeorm": "^6.59.1",
+    "@tsed/swagger": "^6.59.1",
+    "ajv": "^8.6.1",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "mysql": "^2.18.1",
+    "typeorm": "^0.2.34"
+  },
+  "devDependencies": {
+    "@tsed/cli-plugin-typeorm": "3.3.2",
+    "@types/compression": "^1.7.0",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.10",
+    "@types/express": "^4.17.12",
+    "@types/method-override": "^0.0.31",
+    "@types/multer": "^1.4.6",
+    "@types/node": "^16.0.0",
+    "@types/inquirer": "^7.3.2",
+    "ts-node": "^10.0.0",
+    "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.3.5"
+  },
+  "tsed": {
+    "packageManager": "yarn",
+    "convention": "default"
+  }
+}
