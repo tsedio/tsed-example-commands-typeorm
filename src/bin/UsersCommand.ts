@@ -5,6 +5,7 @@ import {Inject} from "@tsed/di";
 import {UserRepository} from "../services/UsersRepository";
 
 export interface UsersCommandContext extends Omit<User, "id"> {
+  id?: number;
   action: "create" | "list";
 }
 
@@ -47,6 +48,18 @@ export class UsersCommand implements CommandProvider {
             name: "age"
           }
         ];
+      case "list":
+        const users = await this.repository.find();
+        return [
+          {
+            type: "list",
+            message: "select one",
+            name: "id",
+            choices: users.map(({firstName, lastName, id}) => {
+              return {value: id, name: firstName + " " + lastName};
+            })
+          }
+        ];
       default:
         return [];
     }
@@ -58,19 +71,35 @@ export class UsersCommand implements CommandProvider {
   async $exec(ctx: UsersCommandContext): Promise<any> {
     switch (ctx.action) {
       case "create":
-        const user: User = deserialize(ctx, {type: User});
-
-        return [
-          {
-            title: "Create user in database",
-            task: async (ctx: any, task: any) => {
-              const newUser = await this.repository.insert(user);
-              console.log(newUser)
-//              task.output = "User created with id:" + newUser
-            }
-          }
-        ];
+        return this.create(ctx);
+      case "list":
+        return await this.displayUser(ctx);
+      default:
+        return [];
     }
 
+  }
+
+  private async displayUser(ctx: UsersCommandContext) {
+    const user = await this.repository.findOne({id: +ctx.id!});
+
+    if (user) {
+      console.log(JSON.stringify(user, null, 2));
+    } else {
+      console.log("Not found");
+    }
+
+    return [];
+  }
+
+  private create(ctx: UsersCommandContext) {
+    const user: User = deserialize(ctx, {type: User});
+
+    return [
+      {
+        title: "Create user in database",
+        task: () => this.repository.insert(user)
+      }
+    ];
   }
 }
