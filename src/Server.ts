@@ -27,7 +27,14 @@ import {config, rootDir} from "./config";
   swagger: [
     {
       path: "/docs",
-      specVersion: "3.0.1"
+      specVersion: "3.0.1",
+      spec: {
+        info: {
+          title: "Api Title",
+          description: "Description",
+          version: "1.5.0"
+        }
+      }
     }
   ]
 })
