@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@tsed/ajv": "^6.59.1",
-    "@tsed/cli-core": "3.3.2",
+    "@tsed/cli-core": "^3.4.8",
     "@tsed/common": "^6.59.1",
     "@tsed/core": "^6.59.1",
     "@tsed/di": "^6.59.1",

@@ -77,7 +77,6 @@ export class UsersCommand implements CommandProvider {
       default:
         return [];
     }
-
   }
 
   private async displayUser(ctx: UsersCommandContext) {
