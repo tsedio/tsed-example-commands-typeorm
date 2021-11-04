@@ -6,6 +6,9 @@ import {UsersCommand} from "./UsersCommand";
 
 CliCore.bootstrap({
   ...config,
+  logger: {
+    level: "error"
+  },
   commands: [
     UsersCommand
   ]
